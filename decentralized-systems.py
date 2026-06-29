@@ -56,3 +56,17 @@ def print_summary(contract):
 def audit_log(contract, sig):
     log = {
         "hash": contract.generate_hash(),
+        "signature": sig,
+        "status": "SIGNED"
+    }
+    print("Audit log:", json.dumps(log))
+
+def main():
+    c = create_contract()
+    sig = sign_flow(c)
+    verify_flow(c, sig)
+    print_summary(c)
+    audit_log(c, sig)
+
+if __name__ == "__main__":
+    main()
